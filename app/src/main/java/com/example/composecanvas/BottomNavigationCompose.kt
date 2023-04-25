@@ -6,13 +6,10 @@ import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalAbsoluteTonalElevation
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -30,6 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.composecanvas.ui.theme.PhonePeDarkColor
+import com.example.composecanvas.ui.theme.PhonePeGrayColor
+import com.example.composecanvas.ui.theme.PhonePeLightColor
+import com.example.composecanvas.ui.theme.PhonePeTransparentColor
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -60,9 +62,11 @@ fun Navigation(navController: NavHostController) {
 
 
 @Composable
-fun BottomNavigationBar(navController: NavHostController, list: List<BottomNavigationScreens>) {
+fun PhonePeStyleBottomNavigation(navController: NavHostController, list: List<BottomNavigationScreens>) {
 
-    NavigationBar() {
+    NavigationBar(
+        containerColor = PhonePeDarkColor
+    ) {
         val currentRoute = navController.currentBackStackEntry?.destination?.route
         var current by remember {
             mutableStateOf(navController.currentDestination?.route)
@@ -88,21 +92,31 @@ fun BottomNavigationBar(navController: NavHostController, list: List<BottomNavig
             if (isSelected)
             {
                 animatableCircle1.snapTo(100f)
+                delay(150)
                 animatableCircle1.animateTo(
                     targetValue = 0f,
-                    animationSpec = tween(durationMillis = 500)
+                    animationSpec = tween(durationMillis = 1000)
                 )
-
-                animatableCircle2.snapTo(100f)
+            }
+        }
+        LaunchedEffect(isSelected) {
+            if (isSelected)
+            {
+                animatableCircle2.snapTo(120f)
+                delay(150)
                 animatableCircle2.animateTo(
                     targetValue = 0f,
                     animationSpec = tween(durationMillis = 500)
                 )
-
+            }
+        }
+        LaunchedEffect(isSelected) {
+            if (isSelected)
+            {
                 animatableCircle3.snapTo(100f)
                 animatableCircle3.animateTo(
                     targetValue = 0f,
-                    animationSpec = tween(durationMillis = 500)
+                    animationSpec = tween(durationMillis = 400)
                 )
             }
         }
@@ -117,13 +131,14 @@ fun BottomNavigationBar(navController: NavHostController, list: List<BottomNavig
 
                                 val path = Path().apply {
                                     addArc(
-                                        Rect(center = center, radius = 50f),0f,360f
+                                        Rect(center = center, radius = size.width*0.8f),0f,360f
                                     )
                                 }
                                 clipPath(path = path)
                                 {
-                                    drawCircle(color = Color.Blue, center = Offset(center.x-animatableCircle2.value,center.y) , radius = 50f)
-                                    drawCircle(color = Color.White, center = Offset(center.x-animatableCircle1.value,center.y) , radius = 50f)
+                                    drawCircle(color = PhonePeTransparentColor, center = Offset(center.x+animatableCircle3.value,center.y) , radius = size.width*0.8f)
+                                    drawCircle(color = PhonePeLightColor, center = Offset(center.x-animatableCircle2.value,center.y) , radius = size.width*0.8f)
+                                    drawCircle(color = Color.White, center = Offset(center.x-animatableCircle1.value,center.y) , radius = size.width*0.8f)
                                 }
                             }
                         } ,
@@ -143,11 +158,12 @@ fun BottomNavigationBar(navController: NavHostController, list: List<BottomNavig
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.Black,
-                    selectedTextColor = Color.Black,
-                    indicatorColor = MaterialTheme.colorScheme.surfaceColorAtElevation(LocalAbsoluteTonalElevation.current) ,
-                    unselectedIconColor = Color.Black,
-                    unselectedTextColor = Color.Black,
+                    selectedTextColor = Color.White,
+                    indicatorColor = PhonePeDarkColor,
+                    unselectedIconColor = PhonePeGrayColor,
+                    unselectedTextColor = PhonePeGrayColor,
                 ),
+                // this is to remove the ripple effect
                 interactionSource = NoRippleInteractionSource()
             )
         }
@@ -156,6 +172,7 @@ fun BottomNavigationBar(navController: NavHostController, list: List<BottomNavig
 
 }
 
+// For Removing ripple effect from anything
 class NoRippleInteractionSource : MutableInteractionSource {
 
     override val interactions: Flow<Interaction> = emptyFlow()

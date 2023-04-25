@@ -3,14 +3,10 @@ package com.example.composecanvas
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,7 +23,7 @@ class MainActivity : ComponentActivity() {
 
           Scaffold(
               bottomBar = {
-                  BottomNavigationBar(navController =navController , list = listOf(Home,Cart,Settings,Menu) )
+                  PhonePeStyleBottomNavigation(navController =navController , list = listOf(Home,Cart,Settings,Menu) )
               }
           ) { padding->
               Column(modifier = Modifier.padding(padding)) {
