@@ -10,8 +10,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 
 sealed class BottomNavigationScreens(val route: String, val icon: ImageVector) {
-    object Home : BottomNavigationScreens("home", Icons.Filled.Home)
-    object Cart : BottomNavigationScreens("cart",  Icons.Filled.ShoppingCart)
-    object Menu : BottomNavigationScreens("menu",  Icons.Filled.Menu)
-    object Settings : BottomNavigationScreens("settings", Icons.Filled.Settings)
+    object Home : BottomNavigationScreens("Home", Icons.Filled.Home)
+    object Cart : BottomNavigationScreens("Cart",  Icons.Filled.ShoppingCart)
+    object Menu : BottomNavigationScreens("Menu",  Icons.Filled.Menu)
+    object Settings : BottomNavigationScreens("Settings", Icons.Filled.Settings)
 }

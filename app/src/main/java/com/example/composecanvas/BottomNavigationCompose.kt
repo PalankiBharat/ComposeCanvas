@@ -39,20 +39,20 @@ import kotlinx.coroutines.flow.emptyFlow
 fun Navigation(navController: NavHostController) {
 
 
-    NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
+    NavHost(navController = navController, startDestination = "Home") {
+        composable("Home") {
             HomeScreen(navController = navController)
         }
 
-        composable("cart") {
+        composable("Cart") {
             CartScreen(navController = navController)
         }
 
-        composable("settings") {
+        composable("Settings") {
             HomeScreen(navController = navController)
         }
 
-        composable("menu") {
+        composable("Menu") {
             CartScreen(navController = navController)
         }
     }
