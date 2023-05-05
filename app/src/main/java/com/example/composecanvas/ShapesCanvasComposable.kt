@@ -149,8 +149,26 @@ fun ShapeCanvasComposableRoundRect() {
         }
     }
 }
+
+@Composable
+fun ShapeCanvasComposableCircularSector() {
+    Column(modifier = Modifier.fillMaxSize()) {
+        Canvas(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.5f))
+        {
+            drawArc(
+                color = Color.Red,
+                startAngle = 30f,
+                sweepAngle = 300f,
+                useCenter = true,
+                topLeft = Offset(100f,100f),
+                size = Size(500f,500f),
+            )
+        }
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun ShapeCanvasComposablePreview() {
-    ShapeCanvasComposableRoundRect()
+    ShapeCanvasComposableCircularSector()
 }
