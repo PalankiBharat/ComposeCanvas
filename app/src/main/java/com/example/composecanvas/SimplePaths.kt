@@ -154,7 +154,6 @@ fun CubicBezierLine() {
 }
 
 @Preview(showBackground = true, showSystemUi = true)
-
 @Composable
 private fun PreviewSimplePaths() {
     QuadraticBezierLine()
