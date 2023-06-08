@@ -53,7 +53,7 @@ fun BasicPathOperations() {
                 style = Stroke(width = 4.dp.toPx())
             )
             drawPath(
-                path = pathDifferance,
+                path = pathReverseDifference,
                 color = Color.Green
             )
         }
