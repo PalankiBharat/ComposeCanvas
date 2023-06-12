@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import coil.compose.AsyncImage
 import com.example.composecanvas.BottomNavigationScreens.*
 
 class MainActivity : ComponentActivity() {
@@ -23,8 +22,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-            val navController = rememberNavController()
+        CanvasLine()
+      /*      val navController = rememberNavController()
 
           Scaffold(
               bottomBar = {
@@ -35,7 +34,7 @@ class MainActivity : ComponentActivity() {
                   AsyncImage(model = "https://cdn.shopify.com/s/files/1/0514/6332/3817/products/1296484_1_c15f498a-4f1c-46f3-a788-3617a8f731ee_800x.png?v=1679993706", contentDescription ="" )
                   Navigation(navController = navController)
               }
-          }
+          }*/
         }
     }
 }

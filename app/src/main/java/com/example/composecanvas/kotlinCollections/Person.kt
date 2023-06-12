@@ -1,7 +1,8 @@
 data class Person(
     val name: String,
-    val age: Int
-)
+    val age: Int,
+    val hasDrivingLicence: Boolean = false
+    )
 
 data class Address(
     val id: String,
@@ -16,7 +17,7 @@ data class AddressLines(
 object Lists {
     val groupOfPerson = listOf(
         Person("Bharat", 22), Person("Luffy", 30),
-        Person("Zoro", 50), Person("Shanks", 44),
+        Person("Zoro", 50), Person("Shanks", 44, true),
         Person("Big Mom", 6),  Person("Garp", 80)
     )
 
@@ -27,21 +28,13 @@ object Lists {
         Address("4", listOf(AddressLines("Totto Land","Whole Cake Island"))),
     )
 
+    val emojis = listOf("🥳","😎","🐒","🐹","🪲","💻","🏀","⛸️","💃","💋","🌚","🌝")
+
 }
 
 fun main() {
-    val list = Lists.groupOfPerson
-    val addresses = Lists.addresses
-
-   val newList =  list.filter {person->
-      person.age>18
+    val chunkedEmojis = Lists.emojis.chunked(5){
+        it.reversed()
     }
-
-
-
-    val addressLines = addresses.flatMap {
-      it.lines
-    }
-
-    print(newList)
+    chunkedEmojis.forEach { println(it) }
 }
